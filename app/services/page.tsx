@@ -1,7 +1,10 @@
-import { Suspense } from "react"
-import { ServiceGrid } from "@/components/service-grid"
-import { ServiceFilter } from "@/components/service-filter"
-import { ServiceSkeleton } from "@/components/service-skeleton"
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+
+// Dynamically import client components without SSR to avoid build-time errors
+const ServiceGrid = dynamic(() => import("@/components/service-grid"), { ssr: false });
+const ServiceFilter = dynamic(() => import("@/components/service-filter"), { ssr: false });
+const ServiceSkeleton = dynamic(() => import("@/components/service-skeleton"), { ssr: false });
 
 export default function ServicesPage() {
   return (
@@ -18,5 +21,5 @@ export default function ServicesPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
